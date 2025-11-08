@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 
 public class Journal
 {
@@ -28,38 +29,46 @@ public class Journal
         }
     }
 
-    public void SaveToFile(string file)
+    public void SaveToFile()
     {
-        using (StreamWriter writer = new StreamWriter(file))
+        Console.Write("Enter a file path and name to save (e.g., C:\\Users\\You\\Documents\\journal.json): ");
+        string file = Console.ReadLine();
+
+        try
         {
-            foreach (Entry entry in _entries)
-            {
-                writer.WriteLine(entry.ToFileFormat());
-            }
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            string json = JsonSerializer.Serialize(_entries, options);
+            File.WriteAllText(file, json);
+            Console.WriteLine($" Journal saved successfully to {file}");
         }
-        Console.WriteLine($" Journal saved to {file}");
+        catch (Exception ex)
+        {
+            Console.WriteLine($" Error saving file: {ex.Message}");
+        }
     }
 
-    public void LoadFromFile(string file)
+    // Load entries from a JSON file
+    public void LoadFromFile()
     {
-        if (File.Exists(file))
-        {
-            Console.WriteLine(" File not found!");
-            return;
-        }
+        Console.Write("Enter the full path of the file to load (e.g., C:\\Users\\You\\Documents\\journal.json): ");
+        string file = Console.ReadLine();
 
-        _entries.Clear();
-
-        string[] rows = File.ReadAllLines(file);
-        foreach (string row in rows)
+        try
         {
-            Entry entry = Entry.FromFileFormat(row);
-            if (entry != null)
+            if (File.Exists(file))
             {
-                _entries.Add(entry);
+                string json = File.ReadAllText(file);
+                _entries = JsonSerializer.Deserialize<List<Entry>>(json) ?? new List<Entry>();
+                Console.WriteLine($" Journal loaded successfully from {file}");
+            }
+            else
+            {
+                Console.WriteLine(" File not found. Please check the path and try again.");
             }
         }
-
-        Console.WriteLine($" Loaded {_entries.Count} entries from {file}");
+        catch (Exception ex)
+        {
+            Console.WriteLine($" Error loading file: {ex.Message}");
+        }
     }
 }

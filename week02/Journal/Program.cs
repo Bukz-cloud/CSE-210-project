@@ -1,3 +1,4 @@
+//Creativity: Enabled saving or loading of document to JSON for storage. 
 using System;
 
 class Program
@@ -14,11 +15,11 @@ class Program
             Console.WriteLine("\n Please select one of the following choices!");
             Console.WriteLine("1. Write");
             Console.WriteLine("2. Display");
-            Console.WriteLine("3. Save");
-            Console.WriteLine("4. Load");
+            Console.WriteLine("3. Save to JSON");
+            Console.WriteLine("4. Load from JSON");
             Console.WriteLine("5. Quit");
             Console.Write("Choose an option: ");
-            string choice = Console.ReadLine() ?? "";
+            string choice = Console.ReadLine();
 
             switch (choice)
             {
@@ -26,7 +27,7 @@ class Program
                     string prompt = promptGen.GetRandomPrompt();
                     Console.WriteLine($"\nPrompt: {prompt}");
                     Console.Write("Your response: ");
-                    string entry = Console.ReadLine() ?? "";
+                    string entry = Console.ReadLine();
                     string date = DateTime.Now.ToShortDateString();
 
                     Entry newEntry = new Entry(date, prompt, entry);
@@ -39,24 +40,20 @@ class Program
                     break;
 
                 case "3":
-                    Console.Write("Enter filename to save (e.g., journal.txt): ");
-                    string saveFile = Console.ReadLine() ?? "journal.txt";
-                    myJournal.SaveToFile(saveFile);
+                    myJournal.SaveToFile();
                     break;
 
                 case "4":
-                    Console.Write("Enter filename to load (e.g., journal.txt): ");
-                    string loadFile = Console.ReadLine() ?? "journal.txt";
-                    myJournal.LoadFromFile(loadFile);
+                    myJournal.LoadFromFile();
                     break;
 
                 case "5":
                     running = false;
-                    Console.WriteLine("Thanks for your time");
+                    Console.WriteLine("Thanks for your time!");
                     break;
 
                 default:
-                    Console.WriteLine("Invalid option. Try again.");
+                    Console.WriteLine("Invalid option. Please choose 1–5.");
                     break;
             }
         }
