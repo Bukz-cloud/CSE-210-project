@@ -1,3 +1,5 @@
+//Creativity: I added more scripture to the main class.
+
 ﻿using System;
 using System.Collections.Generic;
 
