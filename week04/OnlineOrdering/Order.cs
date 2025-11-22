@@ -34,7 +34,7 @@ public class Order
     public double GetTotalCost()
     {
         double total = 0;
-        foreach (var product in _products)
+        foreach (Product product in _products)
         {
             total += product.CalTotalCost();
         }
