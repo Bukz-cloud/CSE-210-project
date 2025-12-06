@@ -1,0 +1,4 @@
+160
+SimpleGoal|Submit|Submit an assignment by 8pm|50|True
+EternalGoal|Bible|Study for an hour daily.|100
+Checklist|Gym|Exercise for 10 minutes daily.|10|5|1|50

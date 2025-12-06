@@ -1,0 +1,4 @@
+350
+SimpleGoal|Submission|I must submit CSE210 assignment before 11:59pm.|50|False
+EternalGoal,Bible study,I must spend at least an hour studying the word of God daily.,100
+ChecklistGoal, Daily study,Study programming, chemistry, and piano.,150,150,50,1
