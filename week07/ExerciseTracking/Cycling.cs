@@ -4,7 +4,7 @@ public class Cycling : Activity
 {
     private double _speedKph;
 
-    public Running(DateTime date, int length, double speedKph) 
+    public Cycling(DateTime date, int length, double speedKph) 
         : base(date, length)
     {
         _speedKph = speedKph;

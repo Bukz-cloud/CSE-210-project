@@ -1,10 +1,10 @@
 using System;
 
-public class Running : Activity
+public class Swimming : Activity
 {
     private int _numOfLaps;
 
-    public Running(DateTime date, int length, int numOfLaps) 
+    public Swimming(DateTime date, int length, int numOfLaps) 
         : base(date, length)
     {
         _numOfLaps = numOfLaps;
@@ -12,12 +12,12 @@ public class Running : Activity
 
     public override double GetDistance()
     {
-        return (numOfLaps * 50) / 1000;
+        return _numOfLaps * 50 / 1000;
     }
 
     public override double GetSpeed()
     {
-        return (GetDistance()/GetLength()) * 60;
+        return GetDistance()/GetLength() * 60;
     }
 
     public override double GetPace()

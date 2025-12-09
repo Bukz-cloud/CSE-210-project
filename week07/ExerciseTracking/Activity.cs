@@ -15,20 +15,10 @@ public abstract class Activity
     {
         return _date;
     }
-
-    public void SetDate()
-    {
-        _date = date;
-    }'
     
     public int GetLength()
     {
         return _length;
-    }
-
-    public void SetLength()
-    {
-        _length = length;
     }
 
     public abstract double GetDistance();
@@ -40,7 +30,7 @@ public abstract class Activity
     public virtual string GetSummary()
     {
         return $"{_date.ToString("dd MMM yyyy")} " +
-               $"{GetType().Name} ({_minutes} min) - " +
+               $"{GetType().Name} ({_length} min) - " +
                $"Distance: {GetDistance():0.0} km, " +
                $"Speed: {GetSpeed():0.0} kph, " +
                $"Pace: {GetPace():0.00} min/km";
